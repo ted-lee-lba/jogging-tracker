@@ -1,0 +1,63 @@
+﻿
+<div class="form-group">
+    <label class="col-md-2 control-label">@JoggingTracker.Localization.Label.USER_NAME</label>
+    <div class="col-md-10">
+        <input type="text" ng-model="UserModel.UserName" name="UserName" ng-class="Submited?'ng-dirty':''" required autofocus class="form-control" />
+        <span style="color:red" ng-show="(EntryForm.UserName.$dirty || Submited ) && EntryForm.UserName.$error.required">@JoggingTracker.Localization.Message.USER_NAME_REQUIRED</span>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label">@JoggingTracker.Localization.Label.FIRST_NAME</label>
+    <div class="col-md-10">
+        <input type="text" ng-model="UserModel.FirstName" name="FirstName" ng-class="Submited?'ng-dirty':''" required autofocus class="form-control" />
+        <span style="color:red" ng-show="(EntryForm.FirstName.$dirty || Submited) && EntryForm.FirstName.$error.required">@JoggingTracker.Localization.Message.FIRST_NAME_REQUIRED</span>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label">@JoggingTracker.Localization.Label.LAST_NAME</label>
+    <div class="col-md-10">
+        <input type="text" ng-model="UserModel.LastName" name="LastName" ng-class="Submited?'ng-dirty':''" required autofocus class="form-control" />
+        <span style="color:red" ng-show="(EntryForm.LastName.$dirty || Submited) && EntryForm.LastName.$error.required">@JoggingTracker.Localization.Message.LAST_NAME_REQUIRED</span>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label">Email</label>
+    <div class="col-md-10">
+        <input type="email" ng-model="UserModel.Email" name="LastName" ng-class="Submited?'ng-dirty':''" required autofocus class="form-control" />
+        <span style="color:red" ng-show="(EntryForm.Email.$dirty || Submited) && EntryForm.Email.$error.required">Email is requried.</span>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label">@JoggingTracker.Localization.Label.DOB</label>
+    <div class="col-md-5">
+        <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#" ng-click="$event.preventDefault();">
+            <div class="input-group">
+                <input type="text" class="form-control" data-ng-model="UserModel.DOB"
+                       data-date-time-input="DD MMM YYYY" />
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <datetimepicker data-ng-model="UserModel.DOB"
+                            data-datetimepicker-config="{ startView:'day', minView:'day', dropdownSelector: '#dropdown2' }" />
+        </ul>
+        <span style="color:red" ng-show="(EntryForm.DOB.$dirty || Submited) && EntryForm.DOB.$error.required">@JoggingTracker.Localization.Message.DOB_REQUIRED</span>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label">@JoggingTracker.Localization.Label.ROLE</label>
+    <div class="col-md-10">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                {{selectedItem.RolesName}}
+                <span class="caret">
+                </span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li ng-repeat="role in RolesList">
+                    <a ng-click="dropboxitemselected(role)">{{role.RolesName}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

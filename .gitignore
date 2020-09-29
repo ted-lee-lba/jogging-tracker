@@ -1,0 +1,9 @@
+packages/
+JoggingTracker.Db/bin/
+JoggingTracker.Db/obj/
+JoggingTracker.Localization/obj/
+JoggingTracker/bin/
+JoggingTracker/obj/
+JoggingTracker.Localization/bin/
+JoggingTracker.Test/bin/
+JoggingTracker.Test/obj/

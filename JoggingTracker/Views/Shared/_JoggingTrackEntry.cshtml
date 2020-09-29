@@ -1,0 +1,44 @@
+﻿
+<div class="form-group">
+    <label class="col-md-2 control-label">@JoggingTracker.Localization.Label.START_JOGGING_DATETIME</label>
+    <div class="col-md-5">
+        <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#" ng-click="$event.preventDefault();">
+            <div class="input-group">
+                <input type="text" class="form-control" data-ng-model="JoggingTrackModel.FromDateTime"
+                       data-date-time-input="DD MMM YYYY hh:mm a" />
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <datetimepicker data-ng-model="JoggingTrackModel.FromDateTime"
+                            data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"
+                            data-before-render="fromDateTimeBeforeRender($view, $dates, $leftDate, $upDate, $rightDate)" />
+        </ul>
+        <span style="color:red" ng-show="(EntryForm.FromDateTime.$dirty || Submited) && EntryForm.FromDateTime.$error.required">@JoggingTracker.Localization.Message.JOGGING_START_DATETIME_REQUIRED</span>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label">@JoggingTracker.Localization.Label.END_JOGGING_DATETIME</label>
+    <div class="col-md-5">
+        <a class="dropdown-toggle" id="dropdown3" role="button" data-toggle="dropdown" data-target="#" href="#" ng-click="$event.preventDefault();">
+            <div class="input-group">
+                <input type="text" class="form-control" data-ng-model="JoggingTrackModel.ToDateTime"
+                       data-date-time-input="DD MMM YYYY hh:mm a"  />
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+            <datetimepicker data-ng-model="JoggingTrackModel.ToDateTime"
+                            data-datetimepicker-config="{ dropdownSelector: '#dropdown3' }"
+                            data-before-render="toDateTimeBeforeRender($view, $dates, $leftDate, $upDate, $rightDate)" />
+        </ul>
+        <span style="color:red" ng-show="EntryForm.ToDateTime.$error.compareTo">@JoggingTracker.Localization.Message.JOGGING_START_DATETIME_REQUIRED</span>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-md-2 control-label">Distance</label>
+    <div class="col-md-10">
+        <input type="text" ng-model="JoggingTrackModel.Distance" name="LastName" ng-class="Submited?'ng-dirty':''" required autofocus class="form-control" />
+        <span style="color:red" ng-show="(EntryForm.Distance.$dirty || Submited) && EntryForm.Distance.$error.required">@JoggingTracker.Localization.Message.JOGGING_DISTANCE_REQUIRED</span>
+    </div>
+</div>

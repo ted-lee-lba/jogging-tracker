@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = JoggingTracker.Localization.Message.EDIT_JOGGING_RECORD;
+}
+<h2>@ViewBag.Title</h2>
+
+<div class="row" ng-controller="EditJoggingTrackController">
+    <div ng-show="SaveFailed" class="alert alert-danger">
+        <ul>
+            <li ng-repeat="msg in Message">
+                {{msg}}
+            </li>
+        </ul>
+    </div>
+    <form name="EntryForm" class="form-horizontal" role="form" ng-submit="Save()">
+        <div class="col-md-8">
+            <div ng-show="SubmitError" class="alert alert-danger">{{msg}}</div>
+            @Html.Partial("_JoggingTrackEntry")
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="@JoggingTracker.Localization.Label.SUBMIT" class="btn btn-success" />
+                    <input type="button" ng-click="Cancel()" value="@JoggingTracker.Localization.Label.CANCEL" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

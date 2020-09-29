@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Change Password";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div class="row" ng-controller="ChangePassController">
+    <div class="col-md-8">
+        <section>
+            <form name="EntryForm" class="form-horizontal" role="form" ng-submit="Save()">
+                <div ng-show="ChangeFailed" class="alert alert-danger">
+                    <ul>
+                        <li ng-repeat="msg in Message">
+                            {{msg}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">@JoggingTracker.Localization.Label.CURRENT_PASSWORD</label>
+                    <div class="col-md-10">
+                        <input type="password" ng-model="ChangePassModel.CurrentPassword" name="CurrentPassword" ng-class="Submited?'ng-dirty':''" required autofocus class="form-control" />
+                        <span style="color:red" ng-show="(EntryForm.CurrentPassword.$dirty || Submited ) && EntryForm.CurrentPassword.$error.required">@JoggingTracker.Localization.Message.CURRENT_PASSWORD_REQUIRED</span>                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">@JoggingTracker.Localization.Label.NEW_PASSWORD</label>
+                    <div class="col-md-10">
+                        <input type="password" ng-model="ChangePassModel.NewPassword" name="NewPassword" ng-class="Submited?'ng-dirty':''" required autofocus class="form-control" />
+                        <span style="color:red" ng-show="(EntryForm.NewPassword.$dirty || Submited ) && EntryForm.NewPassword.$error.required">@JoggingTracker.Localization.Message.NEW_PASSWORD_REQUIRED</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">@JoggingTracker.Localization.Label.CONFIRM_NEW_PASSWORD</label>
+                    <div class="col-md-10">
+                        <input type="password" ng-model="ChangePassModel.ConfirmPassword" name="ConfirmPassword" ng-class="Submited?'ng-dirty':''" required autofocus class="form-control" compare-to="ChangePassModel.NewPassword" />
+                        <span style="color:red" ng-show="(EntryForm.ConfirmPassword.$dirty || Submited) && EntryForm.ConfirmPassword.$error.required">@JoggingTracker.Localization.Message.CONFIRM_PASSWORD_REQUIRED</span>
+                        <span style="color:red" ng-show="EntryForm.ConfirmPassword.$error.compareTo">@JoggingTracker.Localization.Message.PASSWORD_NOT_MATCH</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="@JoggingTracker.Localization.Label.SUBMIT" class="btn btn-success" />
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Jogging Records";
+}
+<h2>@ViewBag.Title</h2>
+<div ng-controller="JoggingTrackListController">
+    <div class="row">
+        <div ng-show="Message" class="col-md-12">
+            <div class="alert alert-danger">
+                <ul>
+                    <li ng-repeat="msg in Message track by $index">
+                        {{msg}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-horizontal">
+            <div class="form-group" ng-show="ShowUserList == 1">
+                <label class="col-md-2 control-label">@JoggingTracker.Localization.Label.USERS</label>
+                <div class="col-md-5">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            {{selectedUser.FullName}} 
+                            <span class="caret">
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li ng-repeat="user in UserList">
+                                <a ng-click="dropboxitemselected(user)">{{user.FullName}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">@JoggingTracker.Localization.Label.JOGGING_DATE {{ShowUserList}}</label>
+                <div class="col-md-3">
+                    <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#" ng-click="$event.preventDefault();">
+                        <div class="input-group">
+                            <input type="text" class="form-control" data-ng-model="DateFilter.FromDateTime"
+                                   data-date-time-input="DD MMM YYYY" />
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="DateFilter.FromDateTime"
+                                        data-datetimepicker-config="{ startView:'day', minView:'day', dropdownSelector: '#dropdown2', renderOn: 'end-date-changed' }"
+                                        data-before-render="fromDateBeforeRender($view, $dates, $leftDate, $upDate, $rightDate)" />
+                    </ul>
+                </div>
+                <div class="control-label" style="position: relative; float:left">
+                    -
+                </div>
+                <div class="col-md-3">
+                    <a class="dropdown-toggle" id="dropdown3" role="button" data-toggle="dropdown" data-target="#" href="#" ng-click="$event.preventDefault();">
+                        <div class="input-group">
+                            <input type="text" class="form-control" data-ng-model="DateFilter.ToDateTime"
+                                   data-date-time-input="DD MMM YYYY" />
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="DateFilter.ToDateTime"
+                                        data-datetimepicker-config="{ startView:'day', minView:'day', dropdownSelector: '#dropdown3', renderOn: 'start-date-changed' }" 
+                                        data-before-render="toDateBeforeRender($view, $dates, $leftDate, $upDate, $rightDate)"/>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="#" ng-click="$event.preventDefault(); add()">@JoggingTracker.Localization.Label.ADD_NEW..</a>
+        </div>
+    </div>
+    <uib-tabset active="activeForm" >
+        <uib-tab index="0" heading="@JoggingTracker.Localization.Label.DAILY">
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th>@JoggingTracker.Localization.Label.JOGGING_FROM_DATETIME</th>
+                    <th>@JoggingTracker.Localization.Label.JOGGING_TO_DATETIME</th>
+                    <th>@JoggingTracker.Localization.Label.AVERAGE_SPEED</th>
+                </tr>
+                <tr ng-repeat="rcd in JoggingTrackList">
+                    <td>
+                        <a class="glyphicon glyphicon-remove" ng-click="delete(rcd)"></a>
+                        <a class="glyphicon glyphicon-edit" ng-click="edit(rcd)"></a>
+                    </td>
+                    <td>{{rcd.FromDateTime | date : 'dd MMM yyyy hh:mma'}}</td>
+                    <td>{{rcd.ToDateTime | date : 'dd MMM yyyy hh:mma'}}</td>
+                    <td>{{rcd.Distance.toFixed(2)}}</td>
+                    <td>{{rcd.AverageSpeed.toFixed(4) + ' @JoggingTracker.Localization.Label.PER_MINUTE'}}</td>
+                </tr>
+            </table>
+        </uib-tab>
+        <uib-tab index="1" heading="@JoggingTracker.Localization.Label.WEEKLY">
+            <table class="table">
+                <tr>
+                    <th>Date</th>
+                    <th>Total Jogging Time</th>
+                    <th>Total Distance</th>
+                    <th>Average Speed</th>
+                </tr>
+                <tr ng-repeat="rcd in WeeklyList">
+                    <td>{{rcd.DateRange}}</td>
+                    <td>{{rcd.TotalTime}}</td>
+                    <td>{{rcd.TotalDistance.toFixed(2)}}</td>
+                    <td>{{rcd.AverageSpeed.toFixed(4) + ' @JoggingTracker.Localization.Label.PER_MINUTE'}}</td>
+                </tr>
+            </table>
+        </uib-tab>
+    </uib-tabset>
+</div>

@@ -1,0 +1,35 @@
+﻿@using JoggingTracker.Models
+@model LoginModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div class="row" ng-controller="LoginController">
+    <div class="col-md-8">
+        <section id="loginForm">
+            <form name="LoginForm" class="form-horizontal" role="form" ng-submit="SubmitForm()">
+                <div ng-show="LoginFailed" class="alert alert-danger">{{msg}}</div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">@JoggingTracker.Localization.Label.USER_NAME</label>
+                    <div class="col-md-10">
+                        <input type="text" ng-model="UserModel.UserName" name="UserName" ng-class="Submited?'ng-dirty':''" required autofocus class="form-control" />
+                        <span style="color:red" ng-show="(LoginForm.UserName.$dirty || Submited ) && LoginForm.UserName.$error.required">@JoggingTracker.Localization.Message.USER_NAME_REQUIRED</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">@JoggingTracker.Localization.Label.PASSWORD</label>
+                    <div class="col-md-10">
+                        <input type="password" ng-model="UserModel.Password" name="UserPassword" ng-class="Submited?'ng-dirty':''" required autofocus class="form-control" />
+                        <span style="color:red" ng-show="(LoginForm.UserPassword.$dirty || Submited) && LoginForm.UserPassword.$error.required">@JoggingTracker.Localization.Message.PASSWORD_REQUIRED</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="@JoggingTracker.Localization.Label.SUBMIT" class="btn btn-success" />
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>

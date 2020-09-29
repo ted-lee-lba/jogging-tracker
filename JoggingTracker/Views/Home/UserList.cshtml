@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "User List";
+}
+<h2>@ViewBag.Title</h2>
+<div ng-controller="UserListController">
+    <div class="row">
+        <div ng-show="Message" class="col-md-12">
+            <div class=" alert alert-danger">
+                <ul>
+                    <li ng-repeat="msg in Message track by $index">
+                        {{msg}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="#/AddUser">@JoggingTracker.Localization.Label.ADD_NEW..</a>
+        </div>
+    </div>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>@JoggingTracker.Localization.Label.USER_NAME</th>
+            <th>@JoggingTracker.Localization.Label.ROLE</th>
+            <th>@JoggingTracker.Localization.Label.FULL_NAME</th>
+        </tr>
+        <tr ng-repeat="rcd in UserList">
+            <td>
+                <a class="glyphicon glyphicon-remove" ng-click="delete(rcd)"></a>
+                <a class="glyphicon glyphicon-edit" ng-click="edit(rcd)"></a>
+            </td>
+            <td>{{rcd.UserName}}</td>
+            <td>{{rcd.RolesName}}</td>
+            <td>{{rcd.FullName}}</td>
+        </tr>
+    </table>
+</div>
